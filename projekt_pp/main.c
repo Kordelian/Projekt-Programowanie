@@ -24,6 +24,8 @@ int main(int argc, char* argv[]) {
     char* filename = argv[1]; 
     printf("Witaj uzytkowniku! Uzywany plik: %s \n", filename);
 
+    Node* lista = NULL;
+
     int running = 1;
 
     while (running == 1) {
@@ -33,11 +35,13 @@ int main(int argc, char* argv[]) {
         switch (choice){
             case 1:
                 printf("Dodawanie mecha. \n");
+                dodajMecha(&lista);
                 pressEnterToContinue();
                 break;
 
             case 2:
                 printf("Wyswietlanie mecha. \n");
+                wyswietlWszystko(lista);
                 pressEnterToContinue();
                 break;
 

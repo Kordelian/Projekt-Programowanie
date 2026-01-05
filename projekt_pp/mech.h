@@ -9,4 +9,12 @@ typedef struct {
     char stan[51];
 } Mech;
 
+typedef struct Node {
+    Mech dane;
+    struct Node* next;
+} Node;
+
+void dodajMecha(Node** start);
+void wyswietlWszystko(Node* start);
+
 #endif
