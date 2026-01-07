@@ -11,7 +11,8 @@ void Menu(){
     printf("4. Zdemontuj mecha \n");
     printf("5. Wyszkuja mecha \n");
     printf("6. Sortuj liste mechow \n");
-    printf("7. Zapisz i opusc system \n");
+    printf("7. Zapisz do bazy danych \n");
+    printf("8. OPUSC PROGRAM (UWAGA ZAPISZ PRZED OPUSZCZENIEM!)\n");
     printf("Twoj wybor: ");
 }
 
@@ -25,6 +26,7 @@ int main(int argc, char* argv[]) {
     printf("Witaj uzytkowniku! Uzywany plik: %s \n", filename);
 
     Node* lista = NULL;
+    wczytajZPliku(&lista, filename);
 
     int running = 1;
 
@@ -66,8 +68,13 @@ int main(int argc, char* argv[]) {
                 break;
 
             case 7:
-                printf("Zapisywanie i opuszczanie systemu. \n");
-                pressEnterToContinue();
+                printf("Zapisywanie do systemu... \n");
+                zapiszDoPliku(lista, filename);
+                break;
+
+            case 8:
+                printf("Opuszczanie programu...");
+                running = 0;
                 break;
 
         // UZUPELNIC CASE'Y dodac funkcje do nich.

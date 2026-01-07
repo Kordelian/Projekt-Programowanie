@@ -47,8 +47,7 @@ void wyswietlWszystko(Node* start) {
         return;
     }
 
-printf("\n %-20s | %-15s | %-5s | %-15s | %-15s\n");
-printf("MODEL", "KLASA", "MOC", "PILOT", "STAN");
+printf("\n %-20s | %-15s | %-5s | %-15s | %-15s\n", "MODEL", "KLASA", "MOC", "PILOT", "STAN");
     
 Node* obecny = start;
 while (obecny != NULL) {
@@ -61,4 +60,57 @@ while (obecny != NULL) {
 
     obecny = obecny->next; 
     }
+}
+
+void zapiszDoPliku(Node* start, const char* nazwaPliku) {
+    FILE* plik = fopen(nazwaPliku, "w");
+    if (plik == NULL) {
+        printf("BLAD! Nie udalo sie otworzyc pliku do zapisu!\n");
+        return;
+    }
+
+    Node* obecny = start;
+    while (obecny != NULL) {
+        fprintf(plik, "%s;%s;%d;%s;%s\n",
+                obecny->dane.model,
+                obecny->dane.klasa,
+                obecny->dane.moc_reaktora,
+                obecny->dane.pilot,
+                obecny->dane.stan);
+
+        obecny = obecny->next;
+    }
+
+    fclose(plik);
+    printf("SUKCES! Baza danych zostala zapisan do pliku: %s\n", nazwaPliku);
+}
+
+void wczytajZPliku(Node** start, const char* nazwaPliku) {
+    FILE* plik = fopen(nazwaPliku, "r");
+    if (plik == NULL) {
+        printf("Plik %s nie istnieje! Zostanie utworzony przy zapisie.\n", nazwaPliku);
+        return;
+    }
+
+    char bufor[512]; 
+    int licznik = 0;
+
+    while (fgets(bufor, sizeof(bufor), plik)) {
+        Node* nowy = (Node*)malloc(sizeof(Node));
+        if (nowy == NULL) break;
+    
+    sscanf(bufor, "%[^;];%[^;];%d;%[^;];%[^\n]",
+               nowy->dane.model,
+               nowy->dane.klasa,
+               &nowy->dane.moc_reaktora,
+               nowy->dane.pilot,
+               nowy->dane.stan);
+
+        nowy->next = *start;
+        *start = nowy;
+        licznik++;
+    }
+
+    fclose(plik);
+    printf("SUKCES! Baza zostala prawidlowo wczytana \n");
 }

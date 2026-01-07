@@ -4,7 +4,7 @@
 typedef struct {
     char model[101];
     char klasa[51];
-    float moc_reaktora;
+    int moc_reaktora;
     char pilot[101];
     char stan[51];
 } Mech;
@@ -16,5 +16,8 @@ typedef struct Node {
 
 void dodajMecha(Node** start);
 void wyswietlWszystko(Node* start);
+
+void zapiszDoPliku(Node* start, const char* nazwaPliku);
+void wczytajZPliku(Node** start, const char* nazwaPliku);
 
 #endif
