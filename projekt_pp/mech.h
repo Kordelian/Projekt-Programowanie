@@ -14,10 +14,22 @@ typedef struct Node {
     struct Node* next;
 } Node;
 
+// przed case'ami
+void wczytajZPliku(Node** start, const char* nazwaPliku);
+
+// case 1
 void dodajMecha(Node** start);
+
+// case 2
 void wyswietlWszystko(Node* start);
 
+// case 4
+void usunMecha(Node** start);
+
+// case 5
+void wyszukajMecha(Node* start);
+
+// case 7
 void zapiszDoPliku(Node* start, const char* nazwaPliku);
-void wczytajZPliku(Node** start, const char* nazwaPliku);
 
 #endif

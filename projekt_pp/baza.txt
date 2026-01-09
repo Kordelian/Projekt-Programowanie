@@ -1,1 +1,2 @@
-2;2;2;2;2
+klasyczny;klasyczny;22;maciek;sprawny
+szturm;przykladowy;99;krystian;sprawny

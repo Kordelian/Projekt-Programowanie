@@ -112,5 +112,76 @@ void wczytajZPliku(Node** start, const char* nazwaPliku) {
     }
 
     fclose(plik);
-    printf("SUKCES! Baza zostala prawidlowo wczytana \n");
+    printf("SUKCES! Baza zostala prawidlowo wczytana. \n");
+}
+
+void usunMecha(Node** start) {
+    if (*start == NULL) {
+        printf("Lista jest pusta, nie ma pozycji do usuniecia. \n");
+        return;
+    }
+
+    char szukany[100];
+    printf("Podaj nazwe modelu ktory chceszu usunac: ");
+    
+    fgets(szukany, 100, stdin);
+    szukany[strcspn(szukany, "\n")] = 0;
+
+    Node* obecny = *start;
+    Node* poprzedni = NULL;
+
+    while (obecny != NULL) {
+        if (strcmp(obecny->dane.model, szukany) == 0) {
+            if (poprzedni == NULL) {
+                *start = obecny->next;
+            } 
+            else {
+                poprzedni->next = obecny->next; 
+            }
+
+        free(obecny); 
+
+        printf("SUKCES! Mech '%s' zostal pomyslnie usuniety z bazy danych. \n", szukany);
+        return;
+        }
+        poprzedni = obecny;
+        obecny = obecny->next;
+    }
+    printf("Nie znaleziono mecha o nazwie: %s \n", szukany);
+}
+
+void wyszukajMecha(Node* start) {
+    if (start == NULL) {
+        printf("Baza jest pusta. \n");
+        return;
+    }
+    
+    char szukany[100];
+    printf("Podaj model do wyszukania: ");
+    fgets(szukany, 100, stdin);
+    szukany[strcspn(szukany, "\n")] = 0;
+
+    printf("\n TWOJE WYNIKI WYSZUKIWANIA TO: \n");
+    printf("%-20s | %-15s | %-5s | %-15s | %-15s \n", "MODEL", "KLASA", "MOC", "PILOT", "STAN");
+
+    Node* obecny = start;
+    int znaleziono = 0;
+
+    while (obecny != NULL) {
+        if (strstr(obecny->dane.model, szukany) != NULL) {
+            printf("%-20s | %-15s | %-5d | %-15s | %-15s\n", 
+                obecny->dane.model, 
+                obecny->dane.klasa, 
+                obecny->dane.moc_reaktora, 
+                obecny->dane.pilot, 
+                obecny->dane.stan);
+            znaleziono = 1;
+        }
+        obecny = obecny->next;
+    }
+
+    if (znaleziono == 0) {
+        printf("Brak wynikow dla frazy: '%s'\n", szukany);
+    }
+
 }

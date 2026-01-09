@@ -49,21 +49,25 @@ int main(int argc, char* argv[]) {
 
             case 3:
                 printf("Edytowanie mecha. \n");
+                // uzupelnic
                 pressEnterToContinue();
                 break;
 
             case 4:
                 printf("Demontowanie mecha. \n");
+                usunMecha(&lista);
                 pressEnterToContinue();
                 break;
 
             case 5:
                 printf("Wyszukiwanie mecha. \n");
+                wyszukajMecha(lista);
                 pressEnterToContinue();
                 break;
 
             case 6:
                 printf("Sortowanie listy mechow. \n");
+                // uzupelnic
                 pressEnterToContinue();
                 break;
 
@@ -76,8 +80,7 @@ int main(int argc, char* argv[]) {
                 printf("Opuszczanie programu...");
                 running = 0;
                 break;
-
-        // UZUPELNIC CASE'Y dodac funkcje do nich.
+                
         }
     }
 
