@@ -23,13 +23,22 @@ void dodajMecha(Node** start);
 // case 2
 void wyswietlWszystko(Node* start);
 
+// case 3
+void edytujMecha(Node* start);
+
 // case 4
 void usunMecha(Node** start);
 
 // case 5
 void wyszukajMecha(Node* start);
 
+// case 6
+void sortujMechy(Node* start);
+
 // case 7
 void zapiszDoPliku(Node* start, const char* nazwaPliku);
+
+// case 8
+void zwolnijPamiec(Node** start);
 
 #endif

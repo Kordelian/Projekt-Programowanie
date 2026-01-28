@@ -1,2 +1,3 @@
-klasyczny;klasyczny;22;maciek;sprawny
 szturm;przykladowy;99;krystian;sprawny
+Pomocnik;ABC;23;Piotr;w naprawie
+klasyczny;klasyczny;22;maciek;sprawny

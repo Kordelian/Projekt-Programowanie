@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
 
             case 3:
                 printf("Edytowanie mecha. \n");
-                // uzupelnic
+                edytujMecha(lista);
                 pressEnterToContinue();
                 break;
 
@@ -67,7 +67,7 @@ int main(int argc, char* argv[]) {
 
             case 6:
                 printf("Sortowanie listy mechow. \n");
-                // uzupelnic
+                sortujMechy(lista);
                 pressEnterToContinue();
                 break;
 
@@ -77,13 +77,17 @@ int main(int argc, char* argv[]) {
                 break;
 
             case 8:
-                printf("Opuszczanie programu...");
+                printf("Opuszczanie programu i czyszczenie pamieci... \n");
+                zwolnijPamiec(&lista);
                 running = 0;
                 break;
-                
+
+            default: 
+                printf("BLAD! wybierz pozycje od 1 do 8. \n");
+                pressEnterToContinue();
+                break;
         }
     }
 
     return 0;
-
 }
